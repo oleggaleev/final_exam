@@ -11,7 +11,8 @@ function AuctionForm (props) {
     onSubmit({
       title: formData.get('title'),
       description: formData.get('description'),
-      price: formData.get('price')
+      price: formData.get('price'),
+      endson: formData.get('endson')
     });
   };
 
@@ -29,9 +30,14 @@ function AuctionForm (props) {
 
       <div>
         <label htmlFor='price'>price</label> <br />
-        <textarea id='price' name='price' />
+        <input id='price' name='price' />
       </div>
 
+      <div>
+        <label htmlFor='endson'>Ends</label> <br />
+        <input type='datetime-local' id='endson' name='endson' />
+      </div>
+      
       <div>
         <input type='submit' value='Submit'/>
       </div>

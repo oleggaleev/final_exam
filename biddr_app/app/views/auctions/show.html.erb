@@ -27,3 +27,18 @@
   <%= f.text_area :bid %>
   <%= f.submit %>
 <% end %>
+
+  <% @bids.each do |bid| %>
+      <p><%= bid.bid %></p>
+      <p>By <%= bid.user&.full_name %></p>
+      <p><strong>Created At:</strong> <%= time_ago_in_words(bid.created_at) %> ago</p>
+      <% if can?(:destroy, bid) %>
+        <%= link_to(
+          'Delete',
+          bid_path(bid),
+          data: {confirm: 'Are you sure?'},
+          method: :delete
+        ) %>
+      <% end %>
+
+  <% end %>

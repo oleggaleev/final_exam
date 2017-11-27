@@ -14,11 +14,12 @@ class AuctionsController < ApplicationController
   def show
     @auction = Auction.find params[:id]
     @bid = Bid.new
+    @bids = @auction.bids.order(created_at: :desc)
 
     respond_to do |format|
-    format.html { render :show }
-    format.json { render json: @auction }
-end
+      format.html { render :show }
+      format.json { render json: @auction }
+    end
   end
 
   # GET /auctions/new
