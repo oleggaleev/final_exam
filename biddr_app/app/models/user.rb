@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  # before_create :generate_api_key
+  before_create :generate_api_key
 
   def full_name
     "#{first_name} #{last_name}"

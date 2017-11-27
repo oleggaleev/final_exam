@@ -27,5 +27,14 @@ module BiddrApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options, :patch, :delete]
+      end
+    end
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

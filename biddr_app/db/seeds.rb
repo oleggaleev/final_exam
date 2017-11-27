@@ -10,13 +10,13 @@ Auction.destroy_all
 Bid.destroy_all
 User.destroy_all
 
-10.times.each do
+20.times.each do
     first_name = Faker::Name.first_name
     last_name = Faker::Name.last_name
     User.create(
       first_name: first_name,
       last_name: last_name,
-      email: "o@o.o",
+      email: "#{first_name.downcase}.#{last_name.downcase}@example.com",
       password: PASSWORD
     )
 end
