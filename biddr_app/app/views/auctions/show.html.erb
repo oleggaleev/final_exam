@@ -22,3 +22,8 @@
 
 <%= link_to 'Edit', edit_auction_path(@auction) %> |
 <%= link_to 'Back', auctions_path %>
+
+<%= form_for [@auction, @bid] do |f| %>
+  <%= f.text_area :bid %>
+  <%= f.submit %>
+<% end %>

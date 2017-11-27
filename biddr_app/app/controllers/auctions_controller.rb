@@ -1,5 +1,7 @@
 class AuctionsController < ApplicationController
   before_action :set_auction, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize_user!, except: [:index, :show, :new, :create]
 
   # GET /auctions
   # GET /auctions.json
@@ -10,6 +12,8 @@ class AuctionsController < ApplicationController
   # GET /auctions/1
   # GET /auctions/1.json
   def show
+    @auction = Auction.find params[:id]
+    @bid = Bid.new
   end
 
   # GET /auctions/new
@@ -25,6 +29,8 @@ class AuctionsController < ApplicationController
   # POST /auctions.json
   def create
     @auction = Auction.new(auction_params)
+    @auction.user = current_user
+
 
     respond_to do |format|
       if @auction.save

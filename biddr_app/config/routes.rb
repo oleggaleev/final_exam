@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :auctions
+  resources :auctions do
+    resources :bids, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:new, :create]
+  resource :session, only: [:new, :create, :destroy]
+
 
   root 'home#index'
 
