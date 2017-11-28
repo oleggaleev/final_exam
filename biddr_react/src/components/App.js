@@ -45,8 +45,8 @@ class App extends Component {
       <nav>
         <h3>BIDDR</h3>
         <Link to="/">Home</Link>
-        <Link to="/auctions/new">New Acuton</Link>
-        <Link to="/auctions">Aucntions</Link>
+        <Link to="/auctions/new">New Auction</Link>
+        <Link to="/auctions">Auctions</Link>
         { this.isSignedIn()
             ? <span>Hello, {this.state.user.first_name}</span>
             : <Link to="/sign_in">Sign In</Link>

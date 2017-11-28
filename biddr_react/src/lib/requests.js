@@ -38,6 +38,22 @@ export const Auction = {
   }
 }
 
+export const Bid = {
+  create (bid, auction) {
+    return fetch(
+      `${BASE_URL}/api/v1/auctions/${bid.auction_id}/bids`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bid)
+      }
+    ).then(res => res.json());
+  }
+}
+
+
 export const Token = {
   create (params) {
     return fetch(

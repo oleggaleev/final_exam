@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :auctions do
-    resources :bids, shallow: true, only: [:create, :destroy]
+    resources :bids, only: [:create, :destroy]
   end
 
 
@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-        resources :auctions, only: [:index, :show, :create, :update, :destroy]
+        resources :auctions, only: [:index, :show, :create, :update, :destroy] do
+          resources :bids, only: [:create, :destroy]
+        end
         resources :tokens, only:[:create]
     end
 end

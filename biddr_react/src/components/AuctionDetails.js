@@ -1,11 +1,19 @@
 import React from 'react';
+import {Bid} from '../lib/requests';
+import BidForm from './BidForm';
+
+
 
 function AuctionDetails (props) {
   const {
-    title, description, user = {}, endson, created_at, bids = []
+    id, title, description, user = {}, endson, history, created_at, bids = []
   } = props;
-
-  console.log(props)
+  debugger
+  const createBid = function(params) {
+    Bid
+      .create(params)
+      .then(({params}) => history.push(`/auctions/${id}`));
+  }
 
   return (
     <div className="AuctionDetails">
@@ -20,6 +28,10 @@ function AuctionDetails (props) {
           bids.map(bid => <li key={bid.id}>{bid.bid}</li>)
         }
       </ul>
+      <div className='BidsNewPage'>
+          <h4>New Bid</h4>
+          <BidForm auctionId={id} onSubmit={createBid} />
+      </div>
     </div>
   );
 }
